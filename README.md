@@ -3,13 +3,13 @@
 A slightly opinionated starter kit for developing React and/or TypeScript packages. It comes with a several pre-configured tools, so you could focus on coding instead of configuring a project for the nth time. From building to releasing a package, this starter kit has you covered.
 
 <p align="center">
-  <a href="https://github.com/enesdir/npm-react-package/blob/master/LICENSE.md">
+  <a href="https://github.com/enesdir/react-selectx/blob/master/LICENSE.md">
     <img alt="licence-badge" src="https://img.shields.io/badge/license-MIT-brightgreen?color=blue" />
   </a>
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/enesdir/npm-react-package"/>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/enesdir/npm-react-package"/>
-  <a href="https://github.com/enesdir/npm-react-package/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/enesdir/npm-react-package?color=blue"/>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/enesdir/react-selectx"/>
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/enesdir/react-selectx"/>
+  <a href="https://github.com/enesdir/react-selectx/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/enesdir/react-selectx?color=blue"/>
   </a>
 </p>
 
@@ -81,18 +81,16 @@ This project setup will include following features.
 
 ### Install
 
-Create the project using this link [Create a new repository](https://github.com/new?template_name=npm-react-package&template_owner=enesdir)
-
-clone your project
+Clone the project
 
 ```bash
-git clone https://github.com/[YOUR-ACCOUNT-NAME]/[YOUR-PROJECT-NAME].git
+git clone https://github.com/enesdir/react-selectx.git
 ```
 
 Access the project directory.
 
 ```bash
-cd [YOUR-PROJECT-NAME]
+cd react-selectx
 ```
 
 Install dependencies.
@@ -119,7 +117,7 @@ npm run storybook
 
 ## License
 
-This project uses MIT license: [License](https://github.com/enesdir/npm-react-package/blob/master/LICENSE.md)
+This project uses MIT license: [License](https://github.com/enesdir/react-selectx/blob/master/LICENSE.md)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
