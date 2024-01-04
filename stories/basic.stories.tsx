@@ -1,17 +1,59 @@
+// import { useArgs } from '@storybook/preview-api'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { MyComponent } from '../src/MyComponent'
+import { SelectX } from '../src'
+import { options } from './options'
 
-const meta: Meta<typeof MyComponent> = {
-	title: 'UI/MyComponent',
-	component: MyComponent,
+const meta: Meta<typeof SelectX> = {
+	title: 'UI/SelectX',
+	component: SelectX,
 }
 export default meta
 
-type Story = StoryObj<typeof MyComponent>
+type Story = StoryObj<typeof SelectX>
 
-export const Example: Story = {
+// export const Example: Story = {
+// 	args: {
+// 		options: [...options],
+// 		value: [],
+// 	},
+// 	render: function Render(args) {
+// 		const [{ value }, updateArgs] = useArgs()
+
+// 		const onChange = (value: string) => {
+// 			updateArgs({ ...options, value })
+// 		}
+
+// 		return (
+// 			<div>
+// 				<h1>Select Fruits</h1>
+// 				<pre>{JSON.stringify(value)}</pre>
+// 				<SelectX {...args} options={options} onChange={onChange} labelledBy={'Select'} isCreatable={true} />
+// 			</div>
+// 		)
+// 	},
+// }
+export const Multi: Story = {
 	args: {
-		text: 'Try Me!',
+		isMulti: true,
+		isObject: true,
+		displayValue: 'value',
+		options: [...options],
+	},
+}
+export const Disabled: Story = {
+	args: {
+		isDisabled: true,
+		isObject: true,
+		displayValue: 'value',
+		options: [...options],
+	},
+}
+export const Loading: Story = {
+	args: {
+		isLoading: true,
+		isObject: true,
+		displayValue: 'value',
+		options: [...options],
 	},
 }

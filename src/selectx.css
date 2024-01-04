@@ -1,0 +1,415 @@
+/* SelectX Styles */
+
+/* Common Styles */
+.selectx,
+.selectx *,
+.selectx ::after,
+.selectx ::before {
+	box-sizing: border-box;
+}
+
+.selectx {
+	--blue: #4285f4;
+	--gray-lightest: rgb(205 222 240 / 25%);
+	--light-gray: #e9ecef;
+	--medium-gray: #ddd;
+	--dark-gray: #ccc;
+	--darkest-gray: #aaa;
+	--black: #333;
+	--white: #fff;
+	--red: #ff5c5c;
+	--red-light: rgb(220 53 69 / 25%);
+	--blue-light: rgb(0 123 255 / 75%);
+}
+
+.hidden {
+	display: none;
+}
+
+.flex {
+	display: flex;
+}
+
+.grid {
+	display: grid;
+}
+
+.block {
+	display: block;
+}
+
+.pointer-events-none {
+	pointer-events: none;
+}
+
+.pointer-events-auto {
+	pointer-events: auto;
+}
+
+.opacity-75 {
+	opacity: 0.75;
+}
+
+.opacity-100 {
+	opacity: 1;
+}
+
+.m-0 {
+	margin: 0;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}
+
+.nowrap {
+	flex-wrap: nowrap;
+}
+
+.select-none {
+	user-select: none;
+}
+
+.selectx .rotate-0 {
+	transform: rotate(0deg);
+}
+
+.selectx .rotate-180 {
+	transform: rotate(180deg);
+}
+
+/* End Common Styles */
+
+/* Container */
+.selectx.container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	user-select: none;
+	position: relative;
+
+	/* text-align: left;
+  justify-items: center;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem; */
+}
+
+/* End Container */
+
+.selectx .value-container {
+	outline: 0;
+	display: flex;
+	flex-wrap: wrap;
+	cursor: default;
+	position: relative;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 46px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	background-color: var(--white);
+	border-color: var(--dark-gray);
+	box-shadow: 0 0 0 0.2rem var(--gray-lightest);
+	transition:
+		box-shadow 0.2s ease-out,
+		border-color 0.2s ease-out;
+}
+
+.selectx .value-container.disabled {
+	background-color: var(--light-gray);
+}
+
+.selectx .value-container.error {
+	box-shadow: 0 0 0 0.2rem var(--red-light);
+	border-color: var(--red);
+}
+
+.selectx .value-container.focused {
+	box-shadow: 0 0 0 0.2rem var(--blue-light);
+	border-color: var(--blue);
+}
+
+.selectx .value-container input {
+	flex-grow: 1;
+	background: transparent;
+	appearance: none;
+	border: none;
+}
+
+.selectx .value-container input:focus {
+	outline: none;
+}
+
+.selectx .value-container input:read-only {
+	cursor: default;
+}
+
+/* Value Left */
+.selectx .value-left {
+	flex: 1 1 0%;
+	flex-wrap: wrap;
+	overflow: hidden;
+	position: relative;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 2px 8px;
+}
+
+/* End Value Left */
+
+/* Value Right */
+.selectx .value-right {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	align-self: stretch;
+}
+
+/* End Value Right */
+
+@keyframes fade-in-key-frames {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+/* Spinner */
+.spinner {
+	--size: 20px;
+	--border: 4px;
+
+	margin-right: 0.25rem;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	position: relative;
+	border: var(--border) solid var(--dark-gray);
+	border-right: var(--border) solid var(--black);
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* End Spinner */
+
+.indicator-icon {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding: 0 1rem;
+}
+
+.selectx .icon-separator {
+	width: 1px;
+	margin: 4px 0;
+	align-self: stretch;
+	background-color: var(--dark-gray);
+}
+
+.selectx .indicator-icon button {
+	background: transparent;
+	border: none;
+	margin: 0;
+	font-size: 20px;
+	padding: 0;
+	line-height: 1;
+	cursor: pointer;
+	color: var(--dark-gray);
+}
+
+.selectx .indicator-icon button.color-error {
+	color: var(--red);
+}
+
+.selectx .indicator-icon button:focus {
+	outline: none;
+	color: var(--black);
+}
+
+.selectx .indicator-icon button:hover {
+	color: var(--black);
+}
+
+.caret-icon {
+	transition:
+		transform 0.3s ease-in-out,
+		color 0.2s ease-out;
+}
+
+/* Chip Container */
+.chip-container {
+	display: flex;
+	min-width: 0;
+	column-gap: 0.375rem;
+}
+
+/* End Chip Container */
+
+/* Chip */
+.chip {
+	display: flex;
+	align-items: center;
+	padding: 0.25rem;
+	background-color: rgb(0 126 255 / 8%);
+	border-radius: 0.25rem;
+	border: 1px solid rgb(187 201 215 / 24%);
+	font-size: 0.9em;
+	line-height: 1.4;
+}
+
+.chip:last-of-type {
+	margin-right: 5px;
+}
+
+.chip-button {
+	cursor: pointer;
+	background-color: rgb(148 163 184);
+	border: none;
+	outline: none;
+	border-radius: 0.25rem;
+	display: inline-block;
+	font-weight: 600;
+	padding: '0 6px';
+	color: var(--white);
+	font-size: '0.65em';
+	align-self: 'center';
+	margin-left: 5px;
+	animation: fade-in-key-frames 0.2s ease-in;
+	transition: color 0.2s ease-out;
+}
+
+.chip-button:hover {
+	background-color: rgb(0 113 230 / 8%);
+	color: var(--red);
+}
+
+.chip-button:focus {
+	outline: none;
+	color: '#dc3545';
+}
+
+/* Chip End */
+
+/* Chip Label */
+.chip-label {
+	text-transform: capitalize;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	user-select: none;
+	box-sizing: border-box;
+}
+
+/* End Chip Label */
+
+/* DropDown */
+.options-wrapper {
+	position: absolute;
+	left: 0;
+	top: 2.8rem;
+	margin-top: 5px;
+	width: 100%;
+	z-index: 2;
+	box-shadow:
+		0 1px 3px 0 rgb(0 0 0 / 10%),
+		0 1px 2px -1px rgb(0 0 0 / 10%);
+	border-radius: 0.25rem;
+	background-color: var(--white);
+	border: 1px solid var(--dark-gray);
+}
+
+.options-container {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-items: center;
+
+	/* padding: 0.5rem; */
+	overflow-y: auto;
+}
+
+.options-no-data {
+	color: rgb(234 26 26);
+}
+
+.option-content {
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	margin-left: 4px;
+	flex-direction: column;
+}
+
+.option-title {
+	color: rgb(31 41 55);
+}
+
+.option-description {
+	color: rgb(107 114 128);
+}
+
+.options-container ul {
+	list-style-type: none;
+	display: block;
+	padding: 0;
+	margin: 0;
+	max-height: 250px;
+	overflow-y: auto;
+}
+
+.options-container li {
+	display: inline-flex;
+	width: 100%;
+	list-style-type: none;
+	padding: 0.2rem 0.5rem;
+	place-items: center center;
+}
+
+.options-container li:hover {
+	background: #0096fb;
+	color: #fff;
+	cursor: pointer;
+}
+
+.checkbox {
+	margin-right: 10px;
+}
+
+li.group-heading {
+	color: #908e8e;
+	pointer-events: none;
+	padding: 0.2rem 0.5rem;
+}
+
+li.group-child-ele {
+	padding: 0.7rem;
+	border-bottom: 1px solid #ccc;
+}
+
+li.group-child-ele.selected {
+	background: #129cf8;
+}
+
+.option-image {
+	height: 40px;
+	width: 40px;
+	border-radius: 0.25rem;
+}
+
+.option-image img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 0.25rem;
+}
+
+/* End Dropdown */
