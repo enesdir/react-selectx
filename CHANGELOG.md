@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/enesdir/react-select-light/compare/v0.0.3...v0.0.4) (2024-01-05)
+
+
+### Bug Fixes
+
+* project name changes ([7d782cd](https://github.com/enesdir/react-select-light/commit/7d782cded03eabec8d274c6c4ec60f6746b1cf00))
+
 ## [0.0.3](https://github.com/enesdir/react-selectx/compare/v0.0.2...v0.0.3) (2024-01-05)
 
 
