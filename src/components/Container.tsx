@@ -14,13 +14,14 @@ type ContainerProps = {
 	HTMLAttributes<HTMLDivElement>
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
-	({ isDisabled, id, className, children, onKeyUp, onKeyDown }, ref) => {
+	({ isDisabled, id, className, children, onKeyUp, onKeyDown, ...rest }, ref) => {
 		return (
 			<div
+				{...rest}
 				id={id}
 				ref={ref}
 				className={cx(
-					'selectx container',
+					'rsl',
 					className,
 					isDisabled ? 'pointer-events-none opacity-75' : 'pointer-events-auto opacity-100'
 				)}

@@ -36,12 +36,13 @@
 		"component",
 		"tiny",
 		"lightweight",
+		"react-select",
 		"react-multiselect",
 		"react-component"
 	],
 	"scripts": {
 		"build": "tsup",
-		"build-storybook": "build-storybook",
+		"build-storybook": "storybook build",
 		"dev": "tsup --watch",
 		"lint": "eslint src --fix --cache",
 		"lint-staged": "lint-staged",

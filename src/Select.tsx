@@ -34,7 +34,7 @@ export type SelectProps<T = any> = {
 	onSearch?: (value: string) => void
 	onSelect?: (selectedList: any, selectedItem: any) => void
 	optionValueDecorator?: (v: string, option: any) => ReactNode | string
-	options: Option<T>[]
+	options: Option<T>[] | T[]
 	placeholder?: string
 	preSelectedValues?: any
 	selectedValues?: any
@@ -233,7 +233,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			<Container
 				className={CONTAINER_CLS}
 				ref={ref}
-				id={id || 'selectx-container'}
+				id={id || 'rsl-container'}
 				isDisabled={isDisabled}
 				data-testid={CONTAINER_TESTID}
 			>

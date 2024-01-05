@@ -103,7 +103,7 @@ export const DropDown = <T,>({
 										)}
 									</span>
 									{isObject && descriptionValue && (
-										<span className='option-description'>{option[descriptionValue]?.length}</span>
+										<span className='option-description'>{option[descriptionValue]}</span>
 									)}
 								</div>
 							</li>

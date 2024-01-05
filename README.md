@@ -6,6 +6,12 @@ A highly composable &amp; reusable select components for react projects
   <a href="https://github.com/enesdir/react-select-light/blob/master/LICENSE.md">
     <img alt="licence-badge" src="https://img.shields.io/badge/license-MIT-brightgreen?color=blue" />
   </a>
+    <a href="https://github.com/enesdir/react-select-light">
+    <img alt="licence-badge" src="https://badgen.net/badge/open-source/❤%EF%B8%8F/green?icon=github" />
+  </a>
+      <a href="https://github.com/enesdir/react-select-light/issues">
+    <img alt="licence-badge" src="https://img.shields.io/github/issues-raw/enesdir/react-select-light" />
+  </a>
     <a href="https://badge.fury.io/js/react-select-light">
     <img alt="npm-version" src="https://badge.fury.io/js/react-select-light.svg" />
   </a>
@@ -51,7 +57,6 @@ This package setup will include following features.
 - Clearable
 - Disabled (whole box or single options)
 - Creatable in single- and multi-select
-- Makes use of React Portals to render menu
 - 100% typescript
 
 ## Installation & Usage

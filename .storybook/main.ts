@@ -5,10 +5,8 @@ const config: StorybookConfig = {
 	addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
 	core: {
 		builder: '@storybook/builder-vite',
-		core: {
-			disableTelemetry: true, // 👈 Disables telemetry
-			disableWhatsNewNotifications: true,
-		},
+		disableTelemetry: true, // 👈 Disables telemetry
+		disableWhatsNewNotifications: true,
 	},
 	framework: {
 		name: '@storybook/react-vite',
