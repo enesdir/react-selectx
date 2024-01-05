@@ -1,6 +1,6 @@
 {
 	"name": "react-select-light",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "npm package template with tsup and typescript",
 	"repository": {
 		"type": "git",
