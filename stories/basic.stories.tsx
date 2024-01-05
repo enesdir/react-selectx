@@ -1,16 +1,16 @@
 // import { useArgs } from '@storybook/preview-api'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { SelectX } from '../src'
+import { Select } from '../src'
 import { options } from './options'
 
-const meta: Meta<typeof SelectX> = {
-	title: 'UI/SelectX',
-	component: SelectX,
+const meta: Meta<typeof Select> = {
+	title: 'UI/Select',
+	component: Select,
 }
 export default meta
 
-type Story = StoryObj<typeof SelectX>
+type Story = StoryObj<typeof Select>
 
 // export const Example: Story = {
 // 	args: {

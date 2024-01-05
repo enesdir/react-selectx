@@ -2,8 +2,31 @@ import { Fragment } from 'react'
 
 import { cx } from '../utils/cx'
 
-import type { DropDownProps } from '../types'
+import type { ReactNode } from 'react'
+import type { Option } from '../types'
 
+export type DropDownProps<T = any> = {
+	className?: string
+	descriptionValue?: string
+	displayValue?: string
+	fadeOutSelection: (value: Option) => boolean | undefined
+	groupBy?: string
+	groupedObject: any[]
+	imgValue?: string
+	isError?: boolean
+	isLoading?: boolean
+	isMulti?: boolean
+	isObject?: boolean
+	isOpenDropDown: boolean
+	isSelectedValue: (value: Option) => boolean
+	isShowCheckbox?: boolean
+	onSelectItem: (item: Option) => void
+	optionValueDecorator?: (v: string, option: any) => ReactNode | string
+	options: Option<T>[]
+	placeholder?: string
+	searchTerm: string
+	selectedValues?: any
+}
 export const DropDown = <T,>({
 	className,
 	isMulti,
@@ -12,6 +35,7 @@ export const DropDown = <T,>({
 	options,
 	groupBy,
 	searchTerm,
+	descriptionValue,
 	isShowCheckbox,
 	optionValueDecorator,
 	groupedObject,
@@ -26,7 +50,6 @@ export const DropDown = <T,>({
 			return (
 				<Fragment key={obj}>
 					<li className='group-heading'>{obj}</li>
-					{/* @ts-expect-error: todo better type */}
 					{groupedObject[obj].map((option, i) => {
 						const isSelected = isSelectedValue(option)
 						return (
@@ -44,7 +67,7 @@ export const DropDown = <T,>({
 								)}
 								{/* @ts-expect-error: todo better type */}
 								{optionValueDecorator(
-									isObject ? option[displayValue] : (option || '').toString(),
+									isObject ? option[displayValue!] : (option || '').toString(),
 									searchTerm
 								)}
 							</li>
@@ -75,12 +98,12 @@ export const DropDown = <T,>({
 									<span className='option-title'>
 										{/* @ts-expect-error: todo better type */}
 										{optionValueDecorator(
-											isObject ? option[displayValue] : (option || '').toString(),
+											isObject ? option[displayValue!] : (option || '').toString(),
 											searchTerm
 										)}
 									</span>
-									{isObject && (
-										<span className='option-description'>Episode {option['episode']?.length}</span>
+									{isObject && descriptionValue && (
+										<span className='option-description'>{option[descriptionValue]?.length}</span>
 									)}
 								</div>
 							</li>

@@ -7,4 +7,7 @@ export default defineConfig({
 		setupFiles: './tests/setupTest.ts',
 		passWithNoTests: true,
 	},
+	define: {
+		NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+	},
 })

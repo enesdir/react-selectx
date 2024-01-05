@@ -1,10 +1,10 @@
 {
-	"name": "react-selectx",
+	"name": "react-select-light",
 	"version": "0.0.2",
 	"description": "npm package template with tsup and typescript",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/enesdir/react-selectx.git"
+		"url": "git+https://github.com/enesdir/react-selectx.git"
 	},
 	"homepage": "https://enesdir.github.io/react-selectx/",
 	"bugs": {
@@ -54,7 +54,7 @@
 		"release": "dotenv -e HUSKY=0 commit-and-tag-version",
 		"size": "size-limit",
 		"storybook": "storybook dev -p 6006",
-		"test": "vitest",
+		"test": "dotenv -e NODE_ENV=test vitest",
 		"test:ci": "vitest run --coverage",
 		"type-check": "tsc"
 	},

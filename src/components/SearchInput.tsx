@@ -6,8 +6,30 @@ import { IndicatorIcons } from './IndicatorIcons'
 import { ValueContainer } from './ValueContainer'
 import { ValueLeft } from './ValueLeft'
 
-import type { SearchInputProps } from '../types'
+import type { ChangeEventHandler, FocusEventHandler } from 'react'
+import type { Option } from '../types'
 
+export type SearchInputProps = {
+	displayValue?: string
+	focused?: boolean
+	isDisabled?: boolean
+	isError?: boolean
+	isHidePlaceholder: boolean
+	isLoading: boolean
+	isMulti: boolean
+	isObject: boolean
+	isOpenDropDown: boolean
+	isShowClearer?: boolean
+	onClear: () => void
+	onClick: () => void
+	onOptionRemove: (value: Option) => void
+	onSearchBlur?: FocusEventHandler<HTMLInputElement>
+	onSearchChange: ChangeEventHandler<HTMLInputElement>
+	onSearchFocus: FocusEventHandler<HTMLInputElement>
+	placeholder: string
+	searchTerm: string
+	selectedOptions: Option[]
+}
 export const SearchInput = ({
 	isOpenDropDown,
 	selectedOptions,

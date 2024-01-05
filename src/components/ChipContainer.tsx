@@ -19,6 +19,7 @@ export const ChipContainer = ({
 				<Chip
 					key={i}
 					onClick={() => onOptionRemove(option)}
+					// @ts-expect-error: todo
 					text={isObject ? option[displayValue] : (option || '').toString()}
 				/>
 			))}

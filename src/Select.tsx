@@ -1,22 +1,51 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 
-import './selectx.css'
+import type { ReactNode } from 'react'
+
+import './style.css'
 
 import { Container } from './components/Container'
 import { DropDown } from './components/DropDown'
 import { SearchInput } from './components/SearchInput'
+import { CONTAINER_CLS, CONTAINER_TESTID } from './constants/testIDs'
 import { useOnClickOutside } from './hooks/useOnClickOutside'
 
-import type { Option, SelectXProps } from './types'
+import type { Option } from './types'
 
-export const SelectX = forwardRef<HTMLDivElement, SelectXProps>(
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+export type SelectProps<T = any> = {
+	descriptionValue?: string
+	displayValue?: string
+	groupBy?: string
+	id?: string
+	imgValue?: string
+	isCaseSensitiveSearch?: boolean
+	isCloseOnSelect?: boolean
+	isDisabled?: boolean
+	isError?: boolean
+	isHidePlaceholder?: boolean
+	isLoading?: boolean
+	isMulti?: boolean
+	isObject?: boolean
+	isShowCheckbox?: boolean
+	isShowClearer?: boolean
+	onRemove?: (selectedList: any, selectedItem: any) => void
+	onSearch?: (value: string) => void
+	onSelect?: (selectedList: any, selectedItem: any) => void
+	optionValueDecorator?: (v: string, option: any) => ReactNode | string
+	options: Option<T>[]
+	placeholder?: string
+	preSelectedValues?: any
+	selectedValues?: any
+	selectionLimit?: any
+}
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
 	(
 		{
 			id = '',
 			options = [],
 			selectedValues = [],
-			className = '',
 			isMulti = false,
 			isLoading = false,
 			isDisabled = false,
@@ -35,6 +64,7 @@ export const SelectX = forwardRef<HTMLDivElement, SelectXProps>(
 			placeholder = 'Search...',
 			isObject = true,
 			displayValue,
+			descriptionValue,
 			imgValue,
 		},
 		ref
@@ -200,7 +230,13 @@ export const SelectX = forwardRef<HTMLDivElement, SelectXProps>(
 			console.log('clicked onClear')
 		}
 		return (
-			<Container className={className} ref={ref} id={id || 'selectx-container'} isDisabled={isDisabled}>
+			<Container
+				className={CONTAINER_CLS}
+				ref={ref}
+				id={id || 'selectx-container'}
+				isDisabled={isDisabled}
+				data-testid={CONTAINER_TESTID}
+			>
 				<SearchInput
 					isOpenDropDown={isOpenDropDown}
 					isDisabled={isDisabled}
@@ -235,6 +271,7 @@ export const SelectX = forwardRef<HTMLDivElement, SelectXProps>(
 					onSelectItem={onSelectItem}
 					displayValue={displayValue}
 					imgValue={imgValue}
+					descriptionValue={descriptionValue}
 					isObject={isObject}
 				/>
 			</Container>
@@ -242,6 +279,6 @@ export const SelectX = forwardRef<HTMLDivElement, SelectXProps>(
 	}
 )
 
-SelectX.displayName = 'SelectX'
+Select.displayName = 'Select'
 
-export default SelectX
+export default Select
