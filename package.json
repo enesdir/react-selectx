@@ -1,22 +1,16 @@
 {
 	"name": "react-select-light",
 	"version": "0.0.3",
-	"description": "npm package template with tsup and typescript",
+	"description": "A highly composable & reusable select component in react",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/enesdir/react-selectx.git"
+		"url": "git+https://github.com/enesdir/react-select-light.git"
 	},
-	"homepage": "https://enesdir.github.io/react-selectx/",
+	"homepage": "https://enesdir.github.io/react-select-light/",
 	"bugs": {
-		"url": "https://github.com/enesdir/react-selectx/issues"
+		"url": "https://github.com/enesdir/react-select-light/issues"
 	},
 	"author": "enesdir",
-	"contributors": [
-		{
-			"name": "Your name",
-			"email": "yourmail@mail.com"
-		}
-	],
 	"license": "MIT",
 	"engines": {
 		"node": ">=16.0.0"
@@ -41,7 +35,9 @@
 		"react",
 		"component",
 		"tiny",
-		"lightweight"
+		"lightweight",
+		"react-multiselect",
+		"react-component"
 	],
 	"scripts": {
 		"build": "tsup",
@@ -52,7 +48,6 @@
 		"prepare": "husky install",
 		"push-release": "git push --follow-tags origin main",
 		"release": "dotenv -e HUSKY=0 commit-and-tag-version",
-		"size": "size-limit",
 		"storybook": "storybook dev -p 6006",
 		"test": "dotenv -e NODE_ENV=test vitest",
 		"test:ci": "vitest run --coverage",
@@ -69,7 +64,6 @@
 		"@commitlint/cz-commitlint": "^18.4.4",
 		"@commitlint/prompt-cli": "^18.4.4",
 		"@ianvs/prettier-plugin-sort-imports": "^4.1.1",
-		"@size-limit/preset-small-lib": "^11.0.1",
 		"@storybook/addon-essentials": "^7.6.7",
 		"@storybook/addon-interactions": "^7.6.7",
 		"@storybook/addon-links": "^7.6.7",
@@ -84,7 +78,7 @@
 		"@types/react-dom": "^18.2.18",
 		"@typescript-eslint/eslint-plugin": "^6.17.0",
 		"@typescript-eslint/parser": "^6.17.0",
-		"@vitest/coverage-v8": "^1.1.2",
+		"@vitest/coverage-v8": "^1.1.3",
 		"commit-and-tag-version": "^12.0.0",
 		"commitizen": "^4.3.0",
 		"commitlint": "^18.4.4",
@@ -102,7 +96,7 @@
 		"eslint-plugin-typescript-sort-keys": "3.1.0",
 		"eslint-plugin-unused-imports": "3.0.0",
 		"husky": "^8.0.3",
-		"jsdom": "^23.0.1",
+		"jsdom": "^23.1.0",
 		"lint-staged": "^15.2.0",
 		"postcss": "^8.4.33",
 		"prettier": "^3.1.1",
@@ -112,13 +106,12 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-test-renderer": "18.2.0",
-		"size-limit": "^11.0.1",
 		"storybook": "^7.6.7",
 		"stylelint": "^16.1.0",
 		"stylelint-config-standard": "^36.0.0",
 		"tsup": "^8.0.1",
 		"typescript": "^5.3.3",
-		"vitest": "^1.1.2"
+		"vitest": "^1.1.3"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -127,11 +120,5 @@
 		"defaults",
 		"not IE 11",
 		"maintained node versions"
-	],
-	"size-limit": [
-		{
-			"path": "dist/index.js",
-			"limit": "10 KB"
-		}
 	]
 }

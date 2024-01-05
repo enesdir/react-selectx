@@ -1,15 +1,103 @@
-# 📦 React • Typescript • Package Starter
+# React Select Light
 
-A slightly opinionated starter kit for developing React and/or TypeScript packages. It comes with a several pre-configured tools, so you could focus on coding instead of configuring a project for the nth time. From building to releasing a package, this starter kit has you covered.
+A highly composable &amp; reusable select components for react projects
 
 <p align="center">
-  <a href="https://github.com/enesdir/react-selectx/blob/master/LICENSE.md">
+  <a href="https://github.com/enesdir/react-select-light/blob/master/LICENSE.md">
     <img alt="licence-badge" src="https://img.shields.io/badge/license-MIT-brightgreen?color=blue" />
   </a>
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/enesdir/react-selectx"/>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/enesdir/react-selectx"/>
-  <a href="https://github.com/enesdir/react-selectx/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/enesdir/react-selectx?color=blue"/>
+    <a href="https://badge.fury.io/js/react-select-light">
+    <img alt="npm-version" src="https://badge.fury.io/js/react-select-light.svg" />
+  </a>
+  <img alt="types" src="https://badgen.net/npm/types/react-select-light"/>
+</p>
+
+<p align="center">
+  <a href="https://bundlephobia.com/package/react-select-light">
+    <img alt="dependency count" src="https://badgen.net/bundlephobia/dependency-count/react-select-light"/>
+  </a>
+  <a href="https://www.npmjs.com/package/react-select-light">
+    <img alt="npm downloads" src="https://badgen.net/npm/dt/react-select-light"/>
+  </a>
+  <a href="https://bundlephobia.com/package/react-select-light">
+    <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-select-light"/>
+  </a>
+</p>
+
+<details>
+<summary>Table of Contents</summary>
+
+- [React Select Light](#react-select-light)
+  - [Features](#features)
+  - [Installation \& Usage](#installation--usage)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Hints for contributing](#hints-for-contributing)
+    - [Built With](#built-with)
+    - [Dev Dependencies](#dev-dependencies)
+    - [Development](#development)
+    - [Commands](#commands)
+  - [License](#license)
+
+</details>
+
+## Features
+
+This package setup will include following features.
+
+- Single-select
+- Multi-select
+- Searchable
+- Clearable
+- Disabled (whole box or single options)
+- Creatable in single- and multi-select
+- Makes use of React Portals to render menu
+- 100% typescript
+
+## Installation & Usage
+
+### Prerequisites
+
+- node >=18.4.0
+- npm >=9.x.x
+
+### Installation
+
+To start using React Select Light, install it to your project as a dependency via
+
+```bash
+npm install react-select-light
+yarn add react-select-light
+```
+
+then import it and add your tree structure with
+
+```typescript jsx
+import { Select } from 'react-select-light';
+
+<Select
+  options={options}
+  displayValue='label'
+  isMulti
+  isObject
+/>;
+```
+
+More details at [the Get-Started Guide](https://github.com/enesdir/react-select-light).
+
+## Hints for contributing
+
+<p align="center">
+  <a href="https://github.com/enesdir/react-select-light/blob/master/LICENSE.md">
+    <img alt="licence-badge" src="https://img.shields.io/badge/license-MIT-brightgreen?color=blue" />
+  </a>
+    <a href="https://badge.fury.io/js/react-select-light">
+    <img alt="npm-version" src="https://badge.fury.io/js/react-select-light.svg" />
+  </a>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/enesdir/react-select-light"/>
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/enesdir/react-select-light"/>
+  <a href="https://github.com/enesdir/react-select-light/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/enesdir/react-select-light?color=blue"/>
   </a>
 </p>
 
@@ -28,31 +116,7 @@ A slightly opinionated starter kit for developing React and/or TypeScript packag
   </a>
 </p>
 
-<details>
-<summary>Table of Contents</summary>
-
-- [📦 React • Typescript • Package Starter](#-react--typescript--package-starter)
-  - [Features](#features)
-  - [Built With](#built-with)
-    - [Dev Dependencies](#dev-dependencies)
-  - [Installation \& Usage](#installation--usage)
-    - [Prerequisites](#prerequisites)
-    - [Install](#install)
-    - [Commands](#commands)
-  - [License](#license)
-
-</details>
-
-## Features
-
-This project setup will include following features.
-
-- ⚡ Blazing fast dev server and build
-- 🚓 [Test & Publish via Github Actions][github-actions-url] CI/CD workflows for your package. Run tests on every commit plus integrate with Github Releases to automate publishing package to NPM and Storybook to Github Pages.
-- 🧙‍♂️ Developer experience improved with ESLint, Prettier and Husky
-- 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
-
-## Built With
+### Built With
 
 [![Vitest][Vitest]][Vitest-url] [![React][React.js]][React-url]
 
@@ -72,25 +136,14 @@ This project setup will include following features.
 | [ESLint][ESLint-url]                           | A tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.                                                                                                   |
 | [Prettier][Prettier-url]                       | An opinionated code formatter                                                                                                                                                           |
 
-## Installation & Usage
+### Development
 
-### Prerequisites
-
-- node >=18.4.0
-- npm >=9.x.x
-
-### Install
-
-Clone the project
-
-```bash
-git clone https://github.com/enesdir/react-selectx.git
-```
+Fork the project
 
 Access the project directory.
 
 ```bash
-cd react-selectx
+cd react-select-light
 ```
 
 Install dependencies.
@@ -117,7 +170,7 @@ npm run storybook
 
 ## License
 
-This project uses MIT license: [License](https://github.com/enesdir/react-selectx/blob/master/LICENSE.md)
+This project uses MIT license: [License](https://github.com/enesdir/react-select-light/blob/master/LICENSE.md)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
@@ -135,4 +188,3 @@ This project uses MIT license: [License](https://github.com/enesdir/react-select
 [Lint-Staged-url]: https://github.com/okonet/lint-staged#readme
 [Storybook-url]: https://storybook.js.org/
 [tsup-url]: https://github.com/egoist/tsup
-[github-actions-url]: https://docs.github.com/en/actions
