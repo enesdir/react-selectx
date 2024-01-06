@@ -4,9 +4,13 @@ import type { ReactNode } from 'react'
 
 import './style.css'
 
+import { ChipContainer } from './components/ChipContainer'
 import { Container } from './components/Container'
 import { DropDown } from './components/DropDown'
+import { IndicatorIcons } from './components/IndicatorIcons'
 import { SearchInput } from './components/SearchInput'
+import { ValueContainer } from './components/ValueContainer'
+import { ValueLeft } from './components/ValueLeft'
 import { CONTAINER_CLS, CONTAINER_TESTID } from './constants/testIDs'
 import { useOnClickOutside } from './hooks/useOnClickOutside'
 
@@ -229,6 +233,23 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			// eslint-disable-next-line no-console
 			console.log('clicked onClear')
 		}
+		// eslint-disable-next-line no-console
+		const handleOnClearMouseDown = () => console.log('handleOnClearMouseDown clicked')
+		// eslint-disable-next-line no-console
+		const handleOnCaretMouseDown = () => console.log('handleOnCaretMouseDown clicked')
+
+		const inputSearchRef = useRef<HTMLInputElement>(null)
+		useEffect(() => {
+			if (searchTerm) {
+				// @ts-expect-error:todo
+				inputSearchRef.current.innerText = ''
+			}
+
+			if (focused) {
+				// @ts-expect-error:todo
+				inputSearchRef.current.focus()
+			}
+		}, [focused, searchTerm])
 		return (
 			<Container
 				className={CONTAINER_CLS}
@@ -237,26 +258,48 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 				isDisabled={isDisabled}
 				data-testid={CONTAINER_TESTID}
 			>
-				<SearchInput
-					isOpenDropDown={isOpenDropDown}
-					isDisabled={isDisabled}
-					isMulti={isMulti}
-					isObject={isObject}
-					isLoading={isLoading}
-					isError={isError}
-					isShowClearer={isShowClearer}
-					displayValue={displayValue}
-					focused={focused}
-					placeholder={placeholder}
-					isHidePlaceholder={isHidePlaceholder}
-					selectedOptions={selectedOptions}
-					searchTerm={searchTerm}
-					onClear={handleOnClear}
+				<ValueContainer
 					onClick={toggleDropDown}
-					onSearchChange={onChange}
-					onSearchFocus={onFocus}
-					onOptionRemove={onRemoveSelectedItem}
-				/>
+					isFocused={focused}
+					isError={isError}
+					isDisabled={isDisabled}
+				>
+					<ValueLeft isMulti={isMulti} hasValue={selectedOptions.length > 0}>
+						<ChipContainer
+							onOptionRemove={onRemoveSelectedItem}
+							selectedOptions={selectedOptions}
+							isObject={isObject}
+							displayValue={displayValue}
+						/>
+						<SearchInput
+							ref={inputSearchRef}
+							isOpenDropDown={isOpenDropDown}
+							isDisabled={isDisabled}
+							isMulti={isMulti}
+							isLoading={isLoading}
+							isError={isError}
+							focused={focused}
+							placeholder={placeholder}
+							isHidePlaceholder={isHidePlaceholder}
+							selectedOptions={selectedOptions}
+							searchTerm={searchTerm}
+							onClear={handleOnClear}
+							onClick={toggleDropDown}
+							onSearchChange={onChange}
+							onSearchFocus={onFocus}
+							onOptionRemove={onRemoveSelectedItem}
+						/>
+					</ValueLeft>
+					<IndicatorIcons
+						isOpenDropDown={isOpenDropDown}
+						isLoading={isLoading}
+						isShowClearer={isShowClearer}
+						isDisabled={isDisabled}
+						isError={isError}
+						onClearMouseDown={handleOnClearMouseDown}
+						onCaretMouseDown={handleOnCaretMouseDown}
+					/>
+				</ValueContainer>
 				<DropDown
 					isMulti={isMulti}
 					fadeOutSelection={fadeOutSelection}

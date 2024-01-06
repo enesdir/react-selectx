@@ -12,7 +12,7 @@ export const Chip = ({ text, onClick }: ChipProps) => {
 		<div className='chip'>
 			<ChipLabel text={text} />
 			<button type='button' className='chip-button' onClick={onClick} onMouseDown={suppressEvent}>
-				<XIcon className='value-remove-icon' />
+				<XIcon />
 			</button>
 		</div>
 	)

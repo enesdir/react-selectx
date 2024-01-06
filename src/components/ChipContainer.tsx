@@ -1,11 +1,15 @@
-import { Option, SelectXProps } from '../types'
+import { Fragment } from 'react'
+
 import { Chip } from './Chip'
 
+import type { SelectProps } from '../Select'
+import type { Option } from '../types'
+
 type ChipContainerProps = {
-	displayValue: SelectXProps['displayValue']
+	displayValue: SelectProps['displayValue']
 	isObject: boolean
 	onOptionRemove: (value: Option) => void
-	selectedOptions: SelectXProps['options']
+	selectedOptions: SelectProps['options']
 }
 export const ChipContainer = ({
 	selectedOptions,
@@ -14,7 +18,7 @@ export const ChipContainer = ({
 	isObject,
 }: ChipContainerProps) => {
 	return (
-		<div className='chip-container'>
+		<Fragment>
 			{selectedOptions.map((option, i) => (
 				<Chip
 					key={i}
@@ -23,6 +27,6 @@ export const ChipContainer = ({
 					text={isObject ? option[displayValue] : (option || '').toString()}
 				/>
 			))}
-		</div>
+		</Fragment>
 	)
 }
