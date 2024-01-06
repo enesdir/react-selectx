@@ -1,3 +1,6 @@
+# .github/workflows/update-license.yml
+
+# Workflow name
 name: Update License
 
 on:
