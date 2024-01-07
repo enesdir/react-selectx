@@ -1,20 +1,21 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 
-import type { ReactNode } from 'react'
+import type { ReactNode, Ref } from 'react'
 
 import './style.css'
 
-import { ChipContainer } from './components/ChipContainer'
 import { Container } from './components/Container'
 import { DropDown } from './components/DropDown'
 import { IndicatorIcons } from './components/IndicatorIcons'
 import { SearchInput } from './components/SearchInput'
+import { SelectContainer } from './components/SelectContainer'
 import { ValueContainer } from './components/ValueContainer'
 import { ValueLeft } from './components/ValueLeft'
 import { CONTAINER_CLS, CONTAINER_TESTID } from './constants/testIDs'
 import { useOnClickOutside } from './hooks/useOnClickOutside'
+import { groupByOptions, isArrayWithLength } from './utils/common'
 
-import type { Option } from './types'
+import type { Option, SelectRef } from './types'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -28,7 +29,6 @@ export type SelectProps<T = any> = {
 	isCloseOnSelect?: boolean
 	isDisabled?: boolean
 	isError?: boolean
-	isHidePlaceholder?: boolean
 	isLoading?: boolean
 	isMulti?: boolean
 	isObject?: boolean
@@ -37,14 +37,14 @@ export type SelectProps<T = any> = {
 	onRemove?: (selectedList: any, selectedItem: any) => void
 	onSearch?: (value: string) => void
 	onSelect?: (selectedList: any, selectedItem: any) => void
-	optionValueDecorator?: (v: string, option: any) => ReactNode | string
-	options: Option<T>[] | T[]
+	optionValueDecorator?: (v: string, option: Option) => ReactNode | string
+	options: Option<T>[]
 	placeholder?: string
 	preSelectedValues?: any
-	selectedValues?: any
+	selectedValues?: Option<T>[]
 	selectionLimit?: any
 }
-export const Select = forwardRef<HTMLDivElement, SelectProps>(
+export const Select = forwardRef<SelectRef, SelectProps>(
 	(
 		{
 			id = '',
@@ -58,7 +58,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			isShowClearer = false,
 			isCaseSensitiveSearch = false,
 			isCloseOnSelect = false,
-			isHidePlaceholder = true,
 			selectionLimit = -1,
 			onSearch,
 			onSelect = () => {},
@@ -71,18 +70,16 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			descriptionValue,
 			imgValue,
 		},
-		ref
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		ref: Ref<SelectRef>
 	) => {
-		if (!ref) {
-			// eslint-disable-next-line react-hooks/rules-of-hooks
-			ref = useRef<HTMLDivElement>(null)
-		}
 		const [selectedOptions, setSelectedOptions] = useState<Option[]>(Object.assign([], selectedValues))
-		const [data, setData] = useState<Option[]>(options)
+		const [data, setData] = useState<Option[]>([])
 		const [groupedObject, setGroupedObject] = useState<[]>([])
 		const [searchTerm, setSearchTerm] = useState<string>('')
 		const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false)
 		const [focused, setFocused] = useState(false)
+		const selectRef = useRef<HTMLDivElement>(null)
 
 		const optionTimeout = null
 
@@ -90,8 +87,10 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			setIsOpenDropDown(false)
 			setSearchTerm('')
 		}
-		// @ts-expect-error: todo
-		useOnClickOutside(ref, handleClickOutside)
+
+		useOnClickOutside(selectRef, handleClickOutside)
+
+		const hasSelectedOptions = isArrayWithLength(selectedOptions)
 
 		const toggleDropDown = () => {
 			setIsOpenDropDown(!isOpenDropDown)
@@ -113,15 +112,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 			}
 		}
 
-		function groupByOptions(options: Option[]) {
-			const groupedObject = options.reduce(function (r, a) {
-				const key = a[groupBy] || 'Others'
-				r[key] = r[key] || []
-				r[key].push(a)
-				return r
-			}, Object.create({}))
-			setGroupedObject(groupedObject)
-		}
 		function filterOptionsByInput() {
 			let updatedOptions = []
 			if (isObject) {
@@ -131,7 +121,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 				// @ts-expect-error:todo
 				updatedOptions = selectedOptions.filter((i) => matchValues(i, searchTerm))
 			}
-			groupByOptions(updatedOptions)
+			setGroupedObject(groupByOptions(updatedOptions, groupBy))
 			setData(updatedOptions)
 		}
 		function matchValues(value: Option, searchValue: string) {
@@ -218,9 +208,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
 		const initialSetValue = useCallback(() => {
 			if (groupBy) {
-				groupByOptions(options)
+				setGroupedObject(groupByOptions(options, groupBy))
 			}
-			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [groupBy, options])
 
 		useEffect(() => {
@@ -228,7 +217,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 				setData(options)
 				initialSetValue()
 			}
-		}, [options, data, initialSetValue])
+		}, [options, data, initialSetValue, groupBy])
+
 		function handleOnClear() {
 			// eslint-disable-next-line no-console
 			console.log('clicked onClear')
@@ -250,26 +240,29 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 				inputSearchRef.current.focus()
 			}
 		}, [focused, searchTerm])
+
 		return (
 			<Container
 				className={CONTAINER_CLS}
-				ref={ref}
+				ref={selectRef}
 				id={id || 'rsl-container'}
 				isDisabled={isDisabled}
 				data-testid={CONTAINER_TESTID}
 			>
-				<ValueContainer
+				<SelectContainer
 					onClick={toggleDropDown}
 					isFocused={focused}
 					isError={isError}
 					isDisabled={isDisabled}
 				>
-					<ValueLeft isMulti={isMulti} hasValue={selectedOptions.length > 0}>
-						<ChipContainer
+					<ValueLeft hasValue={hasSelectedOptions}>
+						<ValueContainer
+							hasInput={!!searchTerm}
 							onOptionRemove={onRemoveSelectedItem}
 							selectedOptions={selectedOptions}
 							isObject={isObject}
 							displayValue={displayValue}
+							placeholder={placeholder}
 						/>
 						<SearchInput
 							ref={inputSearchRef}
@@ -280,7 +273,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 							isError={isError}
 							focused={focused}
 							placeholder={placeholder}
-							isHidePlaceholder={isHidePlaceholder}
 							selectedOptions={selectedOptions}
 							searchTerm={searchTerm}
 							onClear={handleOnClear}
@@ -299,7 +291,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 						onClearMouseDown={handleOnClearMouseDown}
 						onCaretMouseDown={handleOnCaretMouseDown}
 					/>
-				</ValueContainer>
+				</SelectContainer>
 				<DropDown
 					isMulti={isMulti}
 					fadeOutSelection={fadeOutSelection}

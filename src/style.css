@@ -12,10 +12,11 @@
 .rsl {
 	--blue: #4285f4;
 	--gray-lightest: rgb(205 222 240 / 25%);
-	--light-gray: #e9ecef;
-	--medium-gray: #ddd;
-	--dark-gray: #ccc;
-	--darkest-gray: #aaa;
+	--gray-400: #e9ecef;
+	--gray-500: #ddd;
+	--gray-600: #ccc;
+	--gray-700: #aaa;
+	--gray-800: #6e7276;
 	--black: #333;
 	--white: #fff;
 	--red: #ff5c5c;
@@ -79,6 +80,10 @@
 	transform: rotate(180deg);
 }
 
+.rsl .gray-800 {
+	color: var(--gray-800);
+}
+
 /* End Common Styles */
 
 /* Container */
@@ -111,7 +116,7 @@
 	border-radius: 3px;
 
 	/* background-color: var(--white); */
-	border-color: var(--dark-gray);
+	border-color: var(--gray-600);
 	box-shadow: 0 0 0 0.2rem var(--gray-lightest);
 	transition:
 		box-shadow 0.2s ease-out,
@@ -119,7 +124,7 @@
 }
 
 .rsl .value-container.disabled {
-	background-color: var(--light-gray);
+	background-color: var(--gray-400);
 }
 
 .rsl .value-container.error {
@@ -141,7 +146,6 @@
 	align-items: center;
 	box-sizing: border-box;
 	padding: 2px 8px;
-	display: flex;
 }
 
 /* End Value Left */
@@ -219,7 +223,7 @@
 	height: var(--size);
 	border-radius: 50%;
 	position: relative;
-	border: var(--border) solid var(--dark-gray);
+	border: var(--border) solid var(--gray-600);
 	border-right: var(--border) solid var(--black);
 	animation: rsl-spin 1s linear infinite;
 }
@@ -243,7 +247,7 @@
 	width: 1px;
 	margin: 4px 0;
 	align-self: stretch;
-	background-color: var(--dark-gray);
+	background-color: var(--gray-600);
 }
 
 .rsl .indicator-icon button {
@@ -254,7 +258,7 @@
 	padding: 0;
 	line-height: 1;
 	cursor: pointer;
-	color: var(--dark-gray);
+	color: var(--gray-600);
 }
 
 .rsl .indicator-icon button.color-error {
@@ -285,6 +289,19 @@
 } */
 
 /* End Chip Container */
+
+/* SingleValue */
+.rsl .single-value {
+	margin: 0 2px;
+	max-width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	box-sizing: border-box;
+	text-overflow: ellipsis;
+	grid-area: 1 / 1 / 2 / 3;
+}
+
+/* End SingleValue */
 
 /* Chip */
 .rsl .chip {
@@ -356,7 +373,7 @@
 	border-radius: 0.25rem;
 	animation: 0.2s ease-in 0s 1 normal none running rsl-fade-in-key-frames;
 	background-color: var(--white);
-	border: 1px solid var(--dark-gray);
+	border: 1px solid var(--gray-600);
 }
 
 .rsl .options-container {

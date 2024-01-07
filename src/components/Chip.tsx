@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { suppressEvent } from '../utils/common'
-import { ChipLabel } from './ChipLabel'
 import { XIcon } from './icons/XIcon'
 
 type ChipProps = {
@@ -10,7 +9,7 @@ type ChipProps = {
 export const Chip = ({ text, onClick }: ChipProps) => {
 	return (
 		<div className='chip'>
-			<ChipLabel text={text} />
+			<span className='chip-label'>{text}</span>
 			<button type='button' className='chip-button' onClick={onClick} onMouseDown={suppressEvent}>
 				<XIcon />
 			</button>

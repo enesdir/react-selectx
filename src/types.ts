@@ -8,8 +8,18 @@ export type IconRenderer = ReactNode | ((...args: any[]) => ReactNode)
 export type MouseOrTouchEvent<T = Element> = MouseEvent<T> | TouchEvent<T>
 export type MouseOrTouchEventHandler<T = Element> = EventHandler<MouseOrTouchEvent<T>>
 
-export type Option<T = any> = {
-	[key: string]: any
-	disabled?: boolean
-	value: T
-}
+export type Option<T = any> =
+	| {
+			[key: string]: any
+			disabled?: boolean
+			value: T
+	  }
+	| T
+export type SelectRef = Readonly<{
+	blur: () => void
+	clearValue: () => void
+	focus: () => void
+	menuOpen: boolean
+	setValue: (option?: Option) => void
+	toggleDropDown: (state?: boolean) => void
+}>

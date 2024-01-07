@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title='recipes/Theming' />
+
+# 💅 Theming
+
+You can override CSS variables to customize the appearance
+
+```css
+.rsl {
+	--blue: #4285f4;
+	--gray-lightest: rgb(205 222 240 / 25%);
+	--gray-400: #e9ecef;
+	--gray-500: #ddd;
+	--gray-600: #ccc;
+	--gray-700: #aaa;
+	--gray-800: #6e7276;
+	--black: #333;
+	--white: #fff;
+	--red: #ff5c5c;
+	--red-light: rgb(220 53 69 / 25%);
+	--blue-light: rgb(0 123 255 / 75%);
+}
+```
+
+> 💡 use `!important` if CSS variables are not getting applied
+
+## Dark Mode
+
+if you are using any UI framework that supports dark mode and want to extend the same to `react-select-light` you can do that by passing override class and styles like below
+
+```jsx
+<Select className='dark' {...otherProps} />
+```
+
+```css
+.rsl.dark {
+	--black: #fff;
+	--white: #333;
+}
+```

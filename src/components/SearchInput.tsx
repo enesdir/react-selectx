@@ -8,7 +8,6 @@ export type SearchInputProps = {
 	focused?: boolean
 	isDisabled?: boolean
 	isError?: boolean
-	isHidePlaceholder: boolean
 	isLoading: boolean
 	isMulti: boolean
 	isOpenDropDown: boolean
@@ -27,12 +26,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 	(
 		{
 			isOpenDropDown,
-			selectedOptions,
 			isDisabled,
 			isReadOnly,
 			isLoading,
-			isHidePlaceholder,
-			placeholder,
 			isMulti,
 			searchTerm,
 			onClear,
@@ -67,11 +63,6 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 					onFocus={onSearchFocus}
 					onBlur={onSearchBlur}
 					readOnly={isReadOnly}
-					placeholder={
-						(!isMulti && selectedOptions.length) || (isHidePlaceholder && selectedOptions.length)
-							? ''
-							: placeholder
-					}
 					disabled={!isMulti || isDisabled || isLoading}
 				/>
 			</div>

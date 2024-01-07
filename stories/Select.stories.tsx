@@ -82,7 +82,7 @@ export const StringArrayMulti: Story = {
 	args: {
 		isLoading: false,
 		isObject: false,
-		isMulti: false,
+		isMulti: true,
 		displayValue: 'value',
 		options: [...fruitNames],
 	},

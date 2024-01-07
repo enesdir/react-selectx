@@ -1,34 +1,38 @@
-import { cx } from '../utils/cx'
+/* eslint-disable react/prop-types */
+import { Fragment, memo } from 'react'
 
-import type { MouseEventHandler, PropsWithChildren } from 'react'
+import { Chip } from './Chip'
+
+import type { SelectProps } from '../Select'
+import type { Option } from '../types'
 
 type ValueContainerProps = {
-	className?: string
-	isDisabled?: boolean
-	isError?: boolean
-	isFocused?: boolean
-	onClick?: MouseEventHandler<HTMLDivElement>
-} & PropsWithChildren
-export const ValueContainer = ({
-	className,
-	onClick,
-	isDisabled,
-	isError,
-	isFocused,
-	children,
-}: ValueContainerProps) => {
-	return (
-		<div
-			onClick={onClick}
-			className={cx(
-				'value-container',
-				isDisabled ? 'pointer-events-none disabled select-none' : 'pointer-events-auto',
-				isFocused && 'focused',
-				isError && 'error',
-				className
-			)}
-		>
-			{children}
-		</div>
-	)
+	displayValue: SelectProps['displayValue']
+	hasInput: boolean
+	isObject: boolean
+	onOptionRemove: (value: Option) => void
+	placeholder?: string
+	selectedOptions: SelectProps['options']
 }
+export const ValueContainer = memo<ValueContainerProps>(
+	({ selectedOptions, onOptionRemove, displayValue, placeholder, isObject, hasInput }) => {
+		if (!selectedOptions.length && !hasInput) {
+			return <div className='single-value gray-800'>{placeholder}</div>
+		}
+
+		return (
+			<Fragment>
+				{selectedOptions.map((option, i) => (
+					<Chip
+						key={i}
+						onClick={() => onOptionRemove(option)}
+						// @ts-expect-error: todo
+						text={isObject ? option[displayValue] : (option || '').toString()}
+					/>
+				))}
+			</Fragment>
+		)
+	}
+)
+
+ValueContainer.displayName = 'ValueContainer'
