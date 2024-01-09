@@ -77,7 +77,11 @@ export const Character: Story = {
 					isLoading={isLoading}
 					isError={isError}
 					onSelect={(items) => {
-						action('onChange')(items)
+						action('onSelect')(items)
+						setSelected(items)
+					}}
+					onRemove={(items) => {
+						action('onRemove')(items)
 						setSelected(items)
 					}}
 					onSearch={handleQueryChange}

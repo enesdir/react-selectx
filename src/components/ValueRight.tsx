@@ -9,7 +9,7 @@ import { XIcon } from './icons/XIcon'
 import type { ReactNode } from 'react'
 import type { IconRenderer, MouseOrTouchEventHandler } from '../types'
 
-type IndicatorIconsProps = Readonly<{
+type ValueRightProps = Readonly<{
 	caretIcon?: IconRenderer
 	clearIcon?: IconRenderer
 	isDisabled?: boolean
@@ -22,7 +22,7 @@ type IndicatorIconsProps = Readonly<{
 	onClearMouseDown: MouseOrTouchEventHandler
 }>
 
-export const IndicatorIcons = memo<IndicatorIconsProps>(
+export const ValueRight = memo<ValueRightProps>(
 	({
 		isOpenDropDown,
 		clearIcon,
@@ -52,7 +52,6 @@ export const IndicatorIcons = memo<IndicatorIconsProps>(
 					{iconRenderer(caretIcon) || (
 						<button
 							className={cx(
-								'caret-icon',
 								isOpenDropDown ? 'rotate-180 color-active' : 'rotate-0',
 								isError && 'color-error'
 							)}
@@ -69,4 +68,4 @@ export const IndicatorIcons = memo<IndicatorIconsProps>(
 	}
 )
 
-IndicatorIcons.displayName = 'IndicatorIcons'
+ValueRight.displayName = 'ValueRight'

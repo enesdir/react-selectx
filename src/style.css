@@ -10,7 +10,11 @@
 }
 
 .rsl {
-	--blue: #4285f4;
+	--blue-50: rgb(0 126 255 / 8%);
+	--blue-100: rgb(174 192 220);
+	--blue-700: #4285f4;
+	--sky-100: #129cf8;
+	--sky-200: #0096fb;
 	--gray-lightest: rgb(205 222 240 / 25%);
 	--gray-400: #e9ecef;
 	--gray-500: #ddd;
@@ -19,7 +23,8 @@
 	--gray-800: #6e7276;
 	--black: #333;
 	--white: #fff;
-	--red: #ff5c5c;
+	--red-100: #ff5c5c;
+	--red-600: #dc3545;
 	--red-light: rgb(220 53 69 / 25%);
 	--blue-light: rgb(0 123 255 / 75%);
 }
@@ -88,16 +93,7 @@
 
 /* Container */
 .rsl.rsl-container {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	user-select: none;
 	position: relative;
-
-	/* text-align: left;
-  justify-items: center;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem; */
 }
 
 /* End Container */
@@ -110,7 +106,7 @@
 	position: relative;
 	align-items: center;
 	justify-content: space-between;
-	min-height: 46px;
+	min-height: 38px;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 3px;
@@ -129,12 +125,12 @@
 
 .rsl .value-container.error {
 	box-shadow: var(--red-light) 0 0 0 0.2rem;
-	border-color: var(--red);
+	border-color: var(--red-100);
 }
 
 .rsl .value-container.focused {
 	box-shadow: var(--blue-light) 0 0 0 0.2rem;
-	border-color: var(--blue);
+	border-color: var(--blue-700);
 }
 
 /* Value Left */
@@ -144,7 +140,7 @@
 	overflow: hidden;
 	position: relative;
 	align-items: center;
-	box-sizing: border-box;
+	-webkit-box-align: center;
 	padding: 2px 8px;
 }
 
@@ -154,7 +150,6 @@
 	margin: 2px;
 	flex: 1 1 auto;
 	display: inline-grid;
-	box-sizing: border-box;
 	grid-area: 1 / 1 / 2 / 3;
 	grid-template-columns: 0 min-content;
 }
@@ -182,7 +177,7 @@
 	padding: 0;
 	font: inherit;
 	min-width: 2px;
-	grid-area: 1 / 2;
+	grid-area: 1 / 2 / auto / auto;
 }
 
 .rsl .value-left input:focus {
@@ -197,6 +192,7 @@
 .rsl .value-right {
 	display: flex;
 	align-items: center;
+	-webkit-box-align: center;
 	flex-shrink: 0;
 	align-self: stretch;
 }
@@ -240,6 +236,7 @@
 	height: 100%;
 	display: flex;
 	align-items: center;
+	-webkit-box-align: center;
 	padding: 0 1rem;
 }
 
@@ -259,10 +256,13 @@
 	line-height: 1;
 	cursor: pointer;
 	color: var(--gray-600);
+	transition:
+		transform 0.3s ease-in-out 0s,
+		color 0.2s ease-out 0s;
 }
 
 .rsl .indicator-icon button.color-error {
-	color: var(--red);
+	color: var(--red-100);
 }
 
 .rsl .indicator-icon button:focus {
@@ -273,22 +273,6 @@
 .rsl .indicator-icon button:hover {
 	color: var(--black);
 }
-
-.rsl .caret-icon {
-	transition:
-		transform 0.3s ease-in-out,
-		color 0.2s ease-out;
-}
-
-/* Chip Container */
-
-/* .rsl .chip-container {
-	display: flex;
-	min-width: 0;
-	column-gap: 0.375rem;
-} */
-
-/* End Chip Container */
 
 /* SingleValue */
 .rsl .single-value {
@@ -307,45 +291,14 @@
 .rsl .chip {
 	display: flex;
 	margin: 1px 2px;
-
-	/* align-items: center; */
 	padding: 0.25rem;
-	background-color: rgb(0 126 255 / 8%);
+	background-color: var(--blue-50);
 	border-radius: 0.25rem;
 	border: 1px solid rgb(187 201 215 / 24%);
 	font-size: 0.9em;
 	line-height: 1.4;
 	animation: 0.2s ease-in 0s 1 normal none running rsl-fade-in-key-frames;
 }
-
-.rsl .chip-button {
-	cursor: pointer;
-	background-color: rgb(148 163 184);
-	border: none;
-	outline: none;
-	border-radius: 0.25rem;
-	display: inline-block;
-	font-weight: 600;
-	padding: '0 6px';
-	color: var(--white);
-	font-size: '0.65em';
-	align-self: 'center';
-	margin-left: 5px;
-	animation: rsl-fade-in-key-frames 0.2s ease-in;
-	transition: color 0.2s ease-out;
-}
-
-.rsl .chip-button:hover {
-	background-color: rgb(0 113 230 / 8%);
-	color: var(--red);
-}
-
-.rsl .chip-button:focus {
-	outline: none;
-	color: '#dc3545';
-}
-
-/* Chip End */
 
 /* Chip Label */
 .rsl .chip-label {
@@ -359,35 +312,61 @@
 
 /* End Chip Label */
 
-/* DropDown */
-.rsl .options-wrapper {
-	position: absolute;
-	left: 0;
-	top: 4.8rem;
-	margin-top: 5px;
-	width: 100%;
-	z-index: 2;
-	box-shadow:
-		0 1px 3px 0 rgb(0 0 0 / 10%),
-		0 1px 2px -1px rgb(0 0 0 / 10%);
+.rsl .chip-button {
+	cursor: pointer;
+	background-color: var(--blue-100);
+	border: none;
+	outline: none;
 	border-radius: 0.25rem;
-	animation: 0.2s ease-in 0s 1 normal none running rsl-fade-in-key-frames;
-	background-color: var(--white);
-	border: 1px solid var(--gray-600);
+	display: inline-block;
+	color: var(--white);
+
+	/* font-size: 0.15em; */
+	align-self: center;
+	margin-left: 5px;
+	animation: rsl-fade-in-key-frames 0.2s ease-in;
+	transition: color 0.2s ease-out;
 }
 
-.rsl .options-container {
+.rsl .chip-button:hover {
+	background-color: rgb(0 113 230 / 8%);
+	color: var(--red-100);
+}
+
+.rsl .chip-button:focus {
+	outline: none;
+	color: var(--red-600);
+}
+
+/* Chip End */
+
+/* DropDown */
+.rsl .rsl-dropdown-container {
+	z-index: 999;
+	cursor: default;
+	position: absolute;
+	width: 100%;
+	margin: 0.35rem 0;
+	padding: 0;
+	animation: 0.2s ease-in 0s 1 normal none running rsl-fade-in-key-frames;
+	background-color: var(--white);
+	box-shadow:
+		rgb(10 10 10 / 12%) 0 0.5em 1em -0.125em,
+		rgb(10 10 10 / 4%) 0 0 0 1px;
+	border-radius: 0.25rem;
+}
+
+/* DropDown Content */
+.rsl .rsl-dropdown-content {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 	justify-items: center;
-
-	/* padding: 0.5rem; */
 	overflow-y: auto;
 }
 
 .rsl .options-no-data {
-	color: rgb(234 26 26);
+	color: var(--red-100);
 }
 
 .rsl .option-content {
@@ -399,14 +378,14 @@
 }
 
 .rsl .option-title {
-	color: rgb(31 41 55);
+	color: inherit;
 }
 
 .rsl .option-description {
 	color: rgb(107 114 128);
 }
 
-.rsl .options-container ul {
+.rsl .rsl-dropdown-content ul {
 	list-style-type: none;
 	display: block;
 	padding: 0;
@@ -415,7 +394,7 @@
 	overflow-y: auto;
 }
 
-.rsl .options-container li {
+.rsl .rsl-dropdown-content li {
 	display: inline-flex;
 	width: 100%;
 	list-style-type: none;
@@ -423,29 +402,31 @@
 	place-items: center center;
 }
 
-.rsl .options-container li:hover {
-	background: #0096fb;
-	color: #fff;
+.rsl .rsl-dropdown-content li:hover {
+	background: var(--sky-200);
+	color: var(--white);
 	cursor: pointer;
 }
 
-.rsl .checkbox {
+.rsl rsl-dropdown-content .checkbox {
 	margin-right: 10px;
 }
 
 .rsl li.group-heading {
-	color: #908e8e;
+	color: var(--black);
+	font-weight: bold;
 	pointer-events: none;
 	padding: 0.2rem 0.5rem;
 }
 
 .rsl li.group-child-ele {
 	padding: 0.7rem;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid var(--gray-600);
 }
 
 .rsl li.group-child-ele.selected {
-	background: #129cf8;
+	background: var(--sky-100);
+	color: var(--white);
 }
 
 .rsl .option-image {

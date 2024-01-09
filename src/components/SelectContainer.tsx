@@ -1,6 +1,6 @@
 import { cx } from '../utils/cx'
 
-import type { MouseEventHandler, PropsWithChildren } from 'react'
+import type { MouseEventHandler, MutableRefObject, PropsWithChildren } from 'react'
 
 type SelectContainerProps = {
 	className?: string
@@ -8,6 +8,7 @@ type SelectContainerProps = {
 	isError?: boolean
 	isFocused?: boolean
 	onClick?: MouseEventHandler<HTMLDivElement>
+	selectRef: MutableRefObject<HTMLDivElement | null>
 } & PropsWithChildren
 export const SelectContainer = ({
 	className,
@@ -16,9 +17,11 @@ export const SelectContainer = ({
 	isError,
 	isFocused,
 	children,
+	selectRef,
 }: SelectContainerProps) => {
 	return (
 		<div
+			ref={selectRef}
 			onClick={onClick}
 			className={cx(
 				'value-container',

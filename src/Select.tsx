@@ -6,11 +6,11 @@ import './style.css'
 
 import { Container } from './components/Container'
 import { DropDown } from './components/DropDown'
-import { IndicatorIcons } from './components/IndicatorIcons'
 import { SearchInput } from './components/SearchInput'
 import { SelectContainer } from './components/SelectContainer'
 import { ValueContainer } from './components/ValueContainer'
 import { ValueLeft } from './components/ValueLeft'
+import { ValueRight } from './components/ValueRight'
 import { CONTAINER_CLS, CONTAINER_TESTID } from './constants/testIDs'
 import { useOnClickOutside } from './hooks/useOnClickOutside'
 import { groupByOptions, isArrayWithLength } from './utils/common'
@@ -73,6 +73,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		ref: Ref<SelectRef>
 	) => {
+		const dropDownRef = useRef<HTMLDivElement | null>(null)
 		const [selectedOptions, setSelectedOptions] = useState<Option[]>(Object.assign([], selectedValues))
 		const [data, setData] = useState<Option[]>([])
 		const [groupedObject, setGroupedObject] = useState<[]>([])
@@ -80,7 +81,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 		const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false)
 		const [focused, setFocused] = useState(false)
 		const selectRef = useRef<HTMLDivElement>(null)
-
+		const selectContainerRef = useRef<HTMLDivElement | null>(null)
 		const optionTimeout = null
 
 		const handleClickOutside = () => {
@@ -245,11 +246,12 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 			<Container
 				className={CONTAINER_CLS}
 				ref={selectRef}
-				id={id || 'rsl-container'}
+				id={id || CONTAINER_CLS}
 				isDisabled={isDisabled}
 				data-testid={CONTAINER_TESTID}
 			>
 				<SelectContainer
+					selectRef={selectContainerRef}
 					onClick={toggleDropDown}
 					isFocused={focused}
 					isError={isError}
@@ -282,7 +284,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 							onOptionRemove={onRemoveSelectedItem}
 						/>
 					</ValueLeft>
-					<IndicatorIcons
+					<ValueRight
 						isOpenDropDown={isOpenDropDown}
 						isLoading={isLoading}
 						isShowClearer={isShowClearer}
@@ -293,6 +295,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 					/>
 				</SelectContainer>
 				<DropDown
+					dropDownRef={dropDownRef}
 					isMulti={isMulti}
 					fadeOutSelection={fadeOutSelection}
 					isOpenDropDown={isOpenDropDown}
