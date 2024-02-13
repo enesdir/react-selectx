@@ -24,7 +24,7 @@
 		"declaration": true,
 		"typeRoots": ["node_modules/@types"],
 		"noEmit": true,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
 	},
 	"exclude": ["dist", "node_modules"],
 	"include": [
@@ -34,6 +34,6 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"**/*.cjs",
-		"**/*.mjs"
-	]
+		"**/*.mjs",
+	],
 }
