@@ -1,4 +1,11 @@
-export const industries = [
+export type Industries = {
+	description: string
+	icon: string
+	id: number
+	industry: string
+	value: string
+}
+export const industries: Industries[] = [
 	{
 		id: 1,
 		value: 'Alderaan Royal Engineers',

@@ -3,33 +3,45 @@ import { Fragment, memo } from 'react'
 
 import { Chip } from './Chip'
 
-import type { SelectProps } from '../Select'
-import type { Option } from '../types'
+import type { RenderLabelCallback, RenderSelectMultiOptions, SelectedOption } from '../types'
 
-type ValueContainerProps = {
-	displayValue: SelectProps['displayValue']
+type ValueContainerProps<T> = Readonly<{
+	focusedMultiValue: string | number | null
 	hasInput: boolean
 	isObject: boolean
-	onOptionRemove: (value: Option) => void
+	onRemoveSelectedOption: (value?: string | number) => void
 	placeholder?: string
-	selectedOptions: SelectProps['options']
-}
-export const ValueContainer = memo<ValueContainerProps>(
-	({ selectedOptions, onOptionRemove, displayValue, placeholder, isObject, hasInput }) => {
+	renderOptionLabel: RenderLabelCallback<T>
+	renderSelectMultiOptions?: RenderSelectMultiOptions<T>
+	selectedOptions: SelectedOption<T>[]
+}>
+export const ValueContainer = memo(
+	<T,>({
+		focusedMultiValue,
+		selectedOptions,
+		renderOptionLabel,
+		onRemoveSelectedOption,
+		renderSelectMultiOptions,
+		placeholder,
+		hasInput,
+	}: ValueContainerProps<T>) => {
 		if (!selectedOptions.length && !hasInput) {
 			return <div className='single-value gray-800'>{placeholder}</div>
 		}
-
 		return (
 			<Fragment>
-				{selectedOptions.map((option, i) => (
-					<Chip
-						key={i}
-						onClick={() => onOptionRemove(option)}
-						// @ts-expect-error: todo
-						text={isObject ? option[displayValue] : (option || '').toString()}
-					/>
-				))}
+				{renderSelectMultiOptions
+					? renderSelectMultiOptions({ renderOptionLabel, selected: selectedOptions })
+					: selectedOptions.map(({ data, value }) => (
+							<Chip
+								key={value}
+								renderOptionLabel={renderOptionLabel}
+								onRemoveSelectedOption={onRemoveSelectedOption}
+								isFocused={value === focusedMultiValue}
+								data={data}
+								value={value}
+							/>
+						))}
 			</Fragment>
 		)
 	}

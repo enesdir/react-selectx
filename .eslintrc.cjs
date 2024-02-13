@@ -24,6 +24,7 @@ module.exports = {
 		react: {
 			version: 'detect',
 		},
+		'mdx/code-blocks': true,
 	},
 	plugins: [
 		'react',
@@ -44,6 +45,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:react/recommended',
 		'plugin:storybook/recommended',
+		'plugin:mdx/recommended',
 	],
 	rules: {
 		'@typescript-eslint/ban-ts-comment': 'off',

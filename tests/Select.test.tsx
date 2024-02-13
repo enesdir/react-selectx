@@ -1,11 +1,20 @@
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect } from 'vitest'
 
 import { Select } from '../src/'
-import { CONTAINER_CLS, CONTAINER_TESTID } from '../src/constants/testIDs'
+import {
+	CONTAINER_CLS,
+	CONTAINER_TESTID,
+	DROPDOWN_CONTAINER_CLS,
+	DROPDOWN_CONTAINER_TESTID,
+	DROPDOWN_CONTENT_CLS,
+	DROPDOWN_CONTENT_TESTID,
+	WRAPPER_CLS,
+	WRAPPER_TESTID,
+} from '../src/constants/testIDs'
 
-import type { SelectProps } from '../src/Select'
+import type { SelectProps } from '../src/SelectType'
 
 // Helper functions for Select component
 const renderSelect = (props?: SelectProps) => ({
@@ -15,10 +24,12 @@ const renderSelect = (props?: SelectProps) => ({
 })
 
 // Test cases
-describe('container elements have static className value', () => {
+describe('elements have static className value', () => {
 	const { getByTestId } = renderSelect()
 
-	it('main container has correct classname', () => {
-		expect(getByTestId(CONTAINER_TESTID!)).toHaveClass(CONTAINER_CLS)
-	})
+	expect(getByTestId(WRAPPER_TESTID!)).toHaveClass(WRAPPER_CLS)
+	expect(getByTestId(CONTAINER_TESTID!)).toHaveClass(CONTAINER_CLS)
+	expect(getByTestId(CONTAINER_TESTID!)).toHaveClass(CONTAINER_CLS)
+	expect(getByTestId(DROPDOWN_CONTAINER_TESTID!)).toHaveClass(DROPDOWN_CONTAINER_CLS)
+	expect(getByTestId(DROPDOWN_CONTENT_TESTID!)).toHaveClass(DROPDOWN_CONTENT_CLS)
 })

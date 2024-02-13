@@ -43,7 +43,11 @@ export const ValueRight = memo<ValueRightProps>(
 			<div className='value-right'>
 				{isShowClearer && !isLoading && (
 					<div onTouchEnd={onClearMouseDown} onMouseDown={onClearMouseDown} className='indicator-icon'>
-						{iconRenderer(clearIcon) || <XIcon />}
+						{iconRenderer(clearIcon) || (
+							<button role='button' type='button' tabIndex={-1}>
+								<XIcon />
+							</button>
+						)}
 					</div>
 				)}
 				{isLoading && (loadingNode || <div className='spinner' />)}

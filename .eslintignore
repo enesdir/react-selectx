@@ -10,6 +10,8 @@ package-lock.json
 pnpm-lock.yaml
 pnpm-workspace.yaml
 
+CHANGELOG.md
+
 .DS_Store
 
 !.storybook

@@ -9,6 +9,11 @@ const preview: Preview = {
 				date: /Date$/,
 			},
 		},
+		options: {
+			storySort: {
+				order: ['Home', 'Changelog', 'Recipes', ['Multi Select', 'Theming'], 'UI', '*'],
+			},
+		},
 	},
 }
 

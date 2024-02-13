@@ -1,35 +1,46 @@
 import { cx } from '../utils/cx'
 
-import type { MouseEventHandler, MutableRefObject, PropsWithChildren } from 'react'
+import type {
+	HTMLAttributes,
+	MouseEventHandler,
+	MutableRefObject,
+	PropsWithChildren,
+	TouchEventHandler,
+} from 'react'
 
 type SelectContainerProps = {
 	className?: string
 	isDisabled?: boolean
 	isError?: boolean
 	isFocused?: boolean
-	onClick?: MouseEventHandler<HTMLDivElement>
+	onMouseDown: MouseEventHandler<HTMLDivElement>
+	onTouchEnd: TouchEventHandler<HTMLDivElement>
 	selectRef: MutableRefObject<HTMLDivElement | null>
-} & PropsWithChildren
+} & PropsWithChildren &
+	HTMLAttributes<HTMLDivElement>
 export const SelectContainer = ({
 	className,
-	onClick,
+	onMouseDown,
+	onTouchEnd,
 	isDisabled,
 	isError,
 	isFocused,
 	children,
 	selectRef,
+	...rest
 }: SelectContainerProps) => {
 	return (
 		<div
 			ref={selectRef}
-			onClick={onClick}
+			onMouseDown={onMouseDown}
+			onTouchEnd={onTouchEnd}
 			className={cx(
-				'value-container',
+				className,
 				isDisabled ? 'pointer-events-none disabled select-none' : 'pointer-events-auto',
 				isFocused && 'focused',
-				isError && 'error',
-				className
+				isError && 'error'
 			)}
+			{...rest}
 		>
 			{children}
 		</div>

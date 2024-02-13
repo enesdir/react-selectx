@@ -12,6 +12,7 @@
 .rsl {
 	--blue-50: rgb(0 126 255 / 8%);
 	--blue-100: rgb(174 192 220);
+	--blue-200: rgb(0 123 255 / 15%);
 	--blue-700: #4285f4;
 	--sky-100: #129cf8;
 	--sky-200: #0096fb;
@@ -91,14 +92,15 @@
 
 /* End Common Styles */
 
-/* Container */
-.rsl.rsl-container {
+/* Wrapper (SelectWrapper) */
+.rsl.rsl-wrapper {
 	position: relative;
 }
 
-/* End Container */
+/* End Wrapper */
 
-.rsl .value-container {
+/* Container (SelectContainer) */
+.rsl .rsl-container {
 	outline: 0;
 	display: flex;
 	flex-wrap: wrap;
@@ -119,19 +121,21 @@
 		border-color 0.2s ease-out;
 }
 
-.rsl .value-container.disabled {
+.rsl .rsl-container.disabled {
 	background-color: var(--gray-400);
 }
 
-.rsl .value-container.error {
+.rsl .rsl-container.error {
 	box-shadow: var(--red-light) 0 0 0 0.2rem;
 	border-color: var(--red-100);
 }
 
-.rsl .value-container.focused {
+.rsl .rsl-container.focused {
 	box-shadow: var(--blue-light) 0 0 0 0.2rem;
 	border-color: var(--blue-700);
 }
+
+/* End Container */
 
 /* Value Left */
 .rsl .value-left {
@@ -210,7 +214,7 @@
 }
 
 /* Spinner */
-.rls .spinner {
+.rsl .spinner {
 	--size: 20px;
 	--border: 4px;
 
@@ -289,6 +293,7 @@
 
 /* Chip */
 .rsl .chip {
+	min-width: 0;
 	display: flex;
 	margin: 1px 2px;
 	padding: 0.25rem;
@@ -334,6 +339,11 @@
 }
 
 .rsl .chip-button:focus {
+	outline: none;
+	color: var(--red-600);
+}
+
+.rsl .chip-button.focused {
 	outline: none;
 	color: var(--red-600);
 }
@@ -402,9 +412,19 @@
 	place-items: center center;
 }
 
-.rsl .rsl-dropdown-content li:hover {
+.rsl .option-container li.focused {
+	background: var(--blue-200);
+	cursor: pointer;
+}
+
+.rsl .option-container li.selected {
 	background: var(--sky-200);
 	color: var(--white);
+	cursor: pointer;
+}
+
+.rsl .rsl-dropdown-content li:hover {
+	background: var(--blue-200);
 	cursor: pointer;
 }
 

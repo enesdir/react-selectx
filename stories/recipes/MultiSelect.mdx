@@ -1,0 +1,67 @@
+import { Controls, Meta, Story } from '@storybook/blocks'
+
+import * as SelectStories from '../Select.stories.tsx'
+
+<Meta title='Recipes/Multi Select' />
+
+# Multi Select
+
+Add the `isMulti` property to allow for multiple selections. While in multi-select mode, some properties are now applicable and others become more pertinent.
+
+- `renderSelectMultiOptions(params: MultiParams) {'=>'} ReactNode` - Optional callback function that can be used to further customize the selection label in multi-select scenarios. <code>params</code> is an object that contains the <code>selected</code> and `renderSelectLabel` properties (array of selected options and function used to render individual option labels, respectively). When this function is defined, left and right arrow navigation of individual options is disabled. When using this property, it may be be a good idea to set the property <code>isBackspaceClearsValue</code> to <em>false</em> in order to avoid accidentally clearing all selections when searching.
+
+## Usage
+
+<Controls
+	exclude={[
+		'descriptionValue',
+		'filterIgnoreAccents',
+		'filterIgnoreCase',
+		'filterMatchFrom',
+		'getFilterOptionString',
+		'getIsOptionDisabled',
+		'getOptionLabel',
+		'getOptionValue',
+		'id',
+		'isAsync',
+		'isAutoFocus',
+		'isBackspaceClearsValue',
+		'isCaseSensitiveSearch',
+		'isClearable',
+		'isDisabled',
+		'isError',
+		'isLoading',
+		'isMulti',
+		'isOpenDropDownOnFocus',
+		'isSearchable',
+		'isShowCheckbox',
+		'onDropDownClose',
+		'onDropDownOpen',
+		'onInputBlur',
+		'onInputChange',
+		'onInputFocus',
+		'onKeyDown',
+		'onOptionsChange',
+		'onRemove',
+		'onSearchChange',
+		'onSelect',
+		'optionValueDecorator',
+		'options',
+		'pageSize',
+		'placeholder',
+		'preSelectedValues',
+		'renderContentOption',
+		'renderSelectLabel',
+		'renderSelectMultiOptions',
+		'searchDelay',
+		'selectedValues',
+		'selectionLimit',
+		'tabSelectsOption',
+	]}
+	of={SelectStories.ObjectArrayMulti}
+/>
+<Story of={SelectStories.ObjectArrayMulti} />
+
+## Custom &quot;renderSelectMultiOptions&quot;
+
+<Story of={SelectStories.ObjectArrayMultiCustomSelect} />
