@@ -63,7 +63,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^18.4.4",
 		"@commitlint/config-conventional": "^18.4.4",
-		"@commitlint/cz-commitlint": "^18.4.4",
+		"@commitlint/cz-commitlint": "^19.2.0",
 		"@commitlint/prompt-cli": "^18.4.4",
 		"@ianvs/prettier-plugin-sort-imports": "^4.1.1",
 		"@storybook/addon-essentials": "^7.6.7",
